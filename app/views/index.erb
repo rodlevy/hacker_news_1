@@ -3,6 +3,15 @@
   <ul><% @posts.each do |post| %>
     <li>
       <div class="title"><a href="<%=post.url%>"><%=post.title%></a></div>
+        <div class ="post_votes">
+     <form action="/post/vote" method="post">
+      <div class="submit_btn">
+      <input type="hidden" name="vote" value="1">
+      <input type="hidden" value="<%= post.id%>" name="post_id">
+      <%= post.post_votes.sum('vote')%>
+      
+      <input class="post_btn" type="submit" value="Up">
+    </div></form>
       <div id="user"><a href="/user_profile/<%= post.user_id.to_i %>"><%=post.author.username %></a> </div>
       <div id="comment_count"><a href="/comments/<%=post.id%>"><%=post.comments.count%> comments</div>
     </li>

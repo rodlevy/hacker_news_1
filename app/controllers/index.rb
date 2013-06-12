@@ -34,3 +34,15 @@ post '/comment/vote' do
   @points = comment.comment_votes.sum('vote')
   redirect to "/comments/#{post_id}"
 end
+
+post '/post/vote' do
+  user_id = current_user.id
+  post_id = params[:post_id]
+  post = Post.find(post_id)
+  vote = params[:vote].to_i
+  votes = post.post_votes
+  PostVote.create(:post_id => post_id,
+                     :user_id   => user_id,
+                     :vote => vote)
+  redirect to "/"
+end

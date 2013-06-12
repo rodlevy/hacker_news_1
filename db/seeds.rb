@@ -1,27 +1,28 @@
 users = <<-USERS
-homesliced
-shotel6
-issata
-tonycross
-artchang
-theoreticalyield
-lungegrammer
-reelpeet
-lec101
-michiesharine
-jeaninesw
-snora88
-claudinerlco
-fakepeet
-dankhole
+Muddy_Waters
+Buddy_Guy
+Nina_Simone
+BB_King
+Etta_James
+Billie_Holiday
+HowlinWolf
+Madlyn Davis
+Mattie Delaney
+Little Buddy Doyle
+Archie Edwards
+Sleepy John Estes
+William Ezell
+Lucky Peterson
+Jesse Fuller
 USERS
 
 
 urls = <<-URLS
-http://www.google.com
-http://www.time.com
-http://twitter.com
-http://www.devbootcamp.com
+http://www.houseofblues.com
+http://www.greenmill.com
+http://buddyguy.com
+http://www.bluesfest.com
+http://www.cityofchicago.org/city/en/depts/dca/supp_info/chicago_blues_festival.html
 URLS
 
 titles = <<-TITLES
@@ -41,11 +42,45 @@ Hashtag Godard church-key, pork belly cornhole selvage kogi small batch Bushwick
 Wafer chupa chups candy tart croissant muffin faworki jujubes. Fruitcake brownie gummi bears sweet roll. Icing ice cream jelly. Brownie marshmallow lollipop chocolate cake cotton candy apple pie tart jelly beans. Toffee icing croissant candy canes macaroon. Tiramisu chocolate cake sweet roll marzipan jelly-o sugar plum sweet roll toffee dessert. Oat cake jelly cotton candy faworki apple pie. Chocolate bar chocolate liquorice wafer. Wafer jujubes dessert danish.
 COMMENTS
 
+emails = <<-EMAILS
+curious@george.com
+dr@seuss.com
+mauricesendak@wherethewildthings.are
+bb@king.com
+muddy@waters.com
+buddy@guy.com
+ninasimone@awesome.com
+eric@clapton.com
+EMAILS
+
 
 user_seed = users.each_line.to_a
 url_seed = urls.each_line.to_a
 comments_seed = comments.each_line.to_a
 title_seed = titles.each_line.to_a
+email_seed = emails.each_line.to_a
+
+30.times do
+  cv = CommentVote.create(
+    # when adding belongs to you add a few other methods
+    # post returns a post object
+    # post_id with is the integer that is referenced
+    vote: ((-1..1).to_a).sample,
+    comment_id: ((1..15).to_a).sample,
+    user_id: ((1..15).to_a).sample,
+    )
+  end
+
+  30.times do
+  pv = PostVote.create(
+    # when adding belongs to you add a few other methods
+    # post returns a post object
+    # post_id with is the integer that is referenced
+    vote: ((-1..1).to_a).sample,
+    post_id: ((1..15).to_a).sample,
+    user_id: ((1..15).to_a).sample,
+    )
+  end
 
 
 comments_seed.each do |t|
@@ -58,7 +93,8 @@ end
 
 user_seed.each do |u|
   User.create(
-    username: user_seed.sample.strip
+    username: user_seed.sample.strip,
+    email: email_seed.sample.strip
     )
 end  
 

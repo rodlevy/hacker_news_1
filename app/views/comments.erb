@@ -4,8 +4,23 @@
 <h3><%= @comments.count %> Comments</h3>
 
 <% @comments.each do |comment| %>
-  <div class="author"><%= comment.user.username %></div>
+  <div class ="votes">
+    <form action="/comment/vote" method="post">
+      <div class="submit_btn">
+      <input type="hidden" name="vote" value="1">
+      <input type="hidden" name="post_id" value="<%=@post.id%>">
+      <input type="hidden" value="<%= comment.id%>" name="comment_id">
+      <% if @points %>
+      <p><%= @points %><p>
+      <%end%>
+      <input class="post_btn" type="submit" value="Up">
+    </div></form>
+<form action="/comment/vote" method="post" name="down" value="-1"><div class="submit_btn"><input class="post_btn" type="submit" value="Down"></div></form></div>
+  <div class="author"><%= comment.author.username %></div>
+
   <div class="unthreaded-comments"> <%= comment.content %></div>
 <%end %>
+
+
 
 </div>

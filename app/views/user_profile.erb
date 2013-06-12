@@ -1,0 +1,21 @@
+<div class="container">
+
+<h3>User: <%= @user.username %> </h3>
+
+<div>
+Posts:
+<% @posts.each do |post| %>
+  <div class="title"><a href='/comments/<%=post.id%>'><%= post.title %></a></div>
+<%end %>
+</div>
+<br>
+<br>
+Comments:
+<div>
+<% @comments.each do |comment| %>
+  <div class="post-comment"><a href='/comments/<%=comment.post_id%>'><%= comment.post.title %></a></div>
+  <div class="unthreaded-comments"> <%= comment.content %></div>
+<%end %>
+</div>
+
+</div>

@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
 
+  has_many :posts
+  has_many :comments
+
   def self.authenticate(params)
     user = User.find_by_email(params[:email])
     (user && user.password == params[:password]) ? user : nil

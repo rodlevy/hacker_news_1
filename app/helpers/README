@@ -7,3 +7,17 @@ helpers do
     "<em>#{text}</em>"
   end
 end
+
+
+
+Notes: 
+
+post.post_votes
+post.voters
+post.authors
+
+collection_of_comment_votes.find_by_user_id(8)
+
+comment.comment_votes.sum('votes')
+
+

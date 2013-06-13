@@ -1,7 +1,7 @@
-<div class="container">
+<div class="comment_container">
 
-<h2><a href="<%= @post.url %>"><%= @post.title %></a></h2>
-<h3><%= @comments.count %> Comments</h3>
+<h1><a href="<%= @post.url %>"><%= @post.title %></a></h1>
+<!--<span class="title"><%= @comments.count %> Comments</span>-->
 
 <% @comments.each do |comment| %>
   <div class ="votes">
@@ -10,7 +10,7 @@
       <input type="hidden" name="vote" value="1">
       <input type="hidden" name="post_id" value="<%=@post.id%>">
       <input type="hidden" value="<%= comment.id%>" name="comment_id">
-      <%= comment.comment_votes.sum('vote')%>
+      <span class="title"><%= comment.comment_votes.sum('vote')%></span>
       
       <input class="post_btn" type="submit" value="Up">
     </div></form>
